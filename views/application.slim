@@ -1,0 +1,74 @@
+doctype html
+html lang="ru"
+  head
+    meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+
+    title
+      | Carousel Template for Bootstrap
+    
+    link href="css/bootstrap.min.css" rel="stylesheet"
+    link href="css/carousel.css" rel="stylesheet"
+
+  body
+    .navbar-wrapper
+      .container
+        nav.navbar.navbar-inverse.navbar-static-top
+          .container
+            .navbar-header
+              button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
+                span.sr-only Toggle navigation
+                
+                - 3.times do
+                  span.icon-bar
+                                
+              <a class="navbar-brand" href="http://getbootstrap.com/examples/carousel/#">#{hello}</a>
+
+            #navbar.navbar-collapse.collapse
+              ul.nav.navbar-nav
+                - counter.each_with_index do |name, index|
+                  li class=index
+                    a href=url =name
+                    
+    #myCarousel.carousel.slide data-ride="carousel"
+      ol.carousel-indicators
+        - counter.each_with_index do |name, index|
+          li data-target="#myCarousel" data-slide-to="#{index}" class=("active" if index == 2) 
+
+      .carousel-inner role="listbox"
+
+        - counter.each_with_index do |name, index|
+
+          .item class=("active" if index == 2)
+            img class="#{index + 1}-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="slide"
+            .container
+              .carousel-caption
+                h1 =name
+                p
+                  a.btn.btn-lg.btn-primary href="http://getbootstrap.com/examples/carousel/#" role="button" Learn more
+
+      a.left.carousel-control href="#myCarousel" role="button" data-slide="prev"
+        span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+        span.sr-only Previous
+      
+      a.right.carousel-control href="#myCarousel" role="button" data-slide="next"
+        span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+        span.sr-only Next
+
+    .container.marketing
+      
+      ==yield
+      
+      footer
+        p.pull-right
+          a href="#" Back to top
+        p
+          | © 2016 Company, Inc
+    
+    script src="js/jquery.min.js"
+    javascript:
+      window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    script src="js/bootstrap.min.js"
+    script src="js/holder.min.js"

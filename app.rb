@@ -5,11 +5,7 @@ before do
 @hello = "Здравствуйте, ребята!"
 end
 
-get '/:url' do
+get '/' do
   html = "<h2>Заголовок</h2>"
-  erb :index, :layout => :default, :locals => {:hello => @hello, :counter => @db, :html => html}
-end
-
-get '/new' do
-  erb :new, :layout => :default, :locals => {:hello => @hello, :counter => @db}
+  slim :index, :layout => :application, :locals => {:hello => @hello, :counter => @db, :html => html}
 end
