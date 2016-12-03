@@ -24,6 +24,7 @@ GEM
     rack-protection (1.5.3)
       rack
     rake (11.3.0)
+    sequel (4.41.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -46,6 +47,7 @@ DEPENDENCIES
   pony
   rack
   rake
+  sequel
   sinatra
   slim
   sqlite3

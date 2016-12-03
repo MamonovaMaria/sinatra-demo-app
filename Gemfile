@@ -5,6 +5,11 @@ gem 'sqlite3'
 # Работа с БД SQLite
 # Репозиторий: https://github.com/sparklemotion/sqlite3-ruby/
 
+gem 'sequel'
+# Простой набор классов для абстрактной работы с БД
+# Официальный сайт: http://sequel.jeremyevans.net/
+# Репозиторий: https://github.com/jeremyevans/sequel
+
 gem 'sinatra'
 # Собственно сам фреймворк Синатра
 # Официальный сайт: http://www.sinatrarb.com/
