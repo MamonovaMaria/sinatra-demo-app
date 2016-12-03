@@ -16,7 +16,7 @@ html lang="ru"
     
     / задаем тайтл документа
     title
-      | Демонстрационное приложение
+      | Демо-приложение
     
     / указываем основной файл стилей для Bootstrap 3.3.7
     link href="css/bootstrap.min.css" rel="stylesheet"
@@ -25,9 +25,40 @@ html lang="ru"
     link href="css/app.css" rel="stylesheet"
 
   body
-  
-    .container
+    
+    / навигация
+    nav.navbar.navbar-default.navbar-fixed-top
       
+      .container
+      
+        .navbar-header
+          
+          / на маленьком разрешении экрана показывается кнопка разворачивания меню
+          button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
+            span.sr-only Развернуть меню
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          
+          / лого или название приложения
+          a.navbar-brand href="/" Демо-приложение
+
+        / основная навигация
+        #navbar.navbar-collapse.collapse
+        
+          ul.nav.navbar-nav
+            li.active
+              a href="/" Главная страница
+            li
+              a href="/news" Новости
+            li
+              a href="/contacts" Контакты
+          
+          / элементы прибитые к краю справа
+          a.btn.btn-default.navbar-btn.navbar-right href="/admin" Войти в админку
+
+    .container
+    
       / через магическое слово yield сюда будет прокинута вьюха,
       / при этом "==" означает что все HTML-содержимое будет выведено как есть
       ==yield
