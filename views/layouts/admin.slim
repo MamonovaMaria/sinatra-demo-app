@@ -1,0 +1,55 @@
+doctype html
+html lang="ru"
+  
+  head
+    
+    meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+    
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    
+    title
+      | Админка
+    
+    link href="css/bootstrap.min.css" rel="stylesheet"
+    
+    / наш пользоваетльский CSS для админки, т.к. она может отличаться по внешнему виду от сайта полностью
+    link href="css/admin.css" rel="stylesheet"
+
+  body
+    
+    nav.navbar.navbar-default.navbar-fixed-top
+      
+      .container
+      
+        .navbar-header
+          
+          button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
+            span.sr-only Развернуть меню
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          
+          a.navbar-brand href="#" Админка
+
+        #navbar.navbar-collapse.collapse
+        
+          ul.nav.navbar-nav
+            li.active
+              a href="/admin" Список страниц
+            li
+              a href="/admin/settings" Настройки
+          
+          a.btn.btn-default.navbar-btn.navbar-right href="/" Выйти на сайт
+
+    .container
+    
+      ==yield
+    
+    script src="js/jquery.min.js"
+    
+    script src="js/bootstrap.min.js"
+    
+    / наш пользовательский JS для админки, т.к. скрипты у нас также могут отличаться
+    script src="js/admin.js"
