@@ -1,3 +1,4 @@
+require 'sequel'
 require 'sqlite3'
 require 'sinatra'
 require 'slim'
@@ -5,10 +6,12 @@ require 'rack'
 require 'rake'
 require 'hash_dot'
 require 'dotenv'
-require 'faker'
 require 'pony'
 require 'letter_opener'
 # используем все необходимые гемы, подробное описание есть в Gemfile
+
+# задаем БД
+DB = Sequel.connect("sqlite://#{YAML.load_file("config/database.yml").to_dot.db_file_path}")
 
 # в блоке helpers задаются методы-помощники Синатры, которые могут быть использованы
 # везде, в том числе за пределами роутов, например во вьюхах
@@ -35,14 +38,15 @@ end
 # в блоке before используется код, который будет выполнен ДО того как будет обработан
 # любой роут соответственно глобальные переменные лучше всего задавать именно тут
 before do
-  @hello = "Привет, мир!"
+  @global_settings = DB[:settings].first.to_dot
+  @pages = DB[:pages]
 end
 
 # собственно, корневой роут, который отдается при запуске приложения
 get '/' do
-  slim  :index,                           # задаем индексную страницу и указываем шаблонизатор
-        :layout => "layouts/app".to_sym,  # указываем через какой лэйаут она пройдет
-        :locals => {:hello => @hello}     # задаем локальные переменные
+  slim  :index,                                 # задаем индексную страницу и указываем шаблонизатор
+        :layout => "layouts/app".to_sym,        # указываем через какой лэйаут она пройдет
+        :locals => {:hello => "Привет, мир!"}   # задаем локальные переменные
 end
 
 # роут для админки, закрытый на базовыю HTTP-авторизацию средствами Rack

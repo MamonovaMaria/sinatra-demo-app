@@ -1,0 +1,5 @@
+# в файле database.yml обычно хранятся все настройки БД.
+# как правило, по аналогии с файлов secrets.yml его не включают в историю Git,
+# однако для нашего примера он включен
+db_adapter: "sqlite3"
+db_file_path: "db/database.sqlite"

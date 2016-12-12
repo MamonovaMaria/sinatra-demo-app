@@ -32,6 +32,7 @@ apt-get install sqlite3 libsqlite3-dev
 Перед первым запуском не забываем делать bundle install
 
 ```
+bundle exec rake db:seed
 bundle exec ruby app.rb
 ```
 

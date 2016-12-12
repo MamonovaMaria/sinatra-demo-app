@@ -14,9 +14,8 @@ html lang="ru"
     / указываем scale-фактор для отображения вьюпорта
     meta name="viewport" content="width=device-width, initial-scale=1"
     
-    / задаем тайтл документа
-    title
-      | Демо-приложение
+    / задаем тайтл страницы
+    title = @global_settings.site_title
     
     / указываем основной файл стилей для Bootstrap 3.3.7
     link href="css/bootstrap.min.css" rel="stylesheet"
@@ -41,7 +40,7 @@ html lang="ru"
             span.icon-bar
           
           / лого или название приложения
-          a.navbar-brand href="#" Демо-приложение
+          a.navbar-brand href="#" = @global_settings.site_name
 
         / основная навигация
         #navbar.navbar-collapse.collapse
