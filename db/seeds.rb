@@ -9,7 +9,8 @@ DB.transaction do
     :site_name => Faker::Company.name ,
     :site_title => "#{Faker::Company.name} #{Faker::Company.suffix} official website" ,
     :site_description => Faker::Company.catch_phrase ,
-    :site_keywords => Faker::Company.bs
+    :site_keywords => Faker::Company.bs ,
+    :logo_url => Faker::Company.logo
   } )
 
   5.times do |n|
@@ -21,9 +22,5 @@ DB.transaction do
       :page_content => Faker::Lorem.paragraph(20)
     } )
   end
-
-  DB[:settings].insert( {
-    :logo_url => Faker::Company.logo
-  } )
 
 end
