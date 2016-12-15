@@ -17,6 +17,12 @@ html lang="ru"
     / задаем тайтл страницы
     title = @global_settings.site_title
     
+    / задаем мета-тег description
+    meta name="description" content="#{@global_settings.site_description}"
+    
+    / задаем мета-тег keywords
+    meta name="keywords" content="#{@global_settings.site_keywords}"
+    
     / указываем основной файл стилей для Bootstrap 3.3.7
     link href="css/bootstrap.min.css" rel="stylesheet"
     
@@ -40,17 +46,24 @@ html lang="ru"
             span.icon-bar
           
           / лого или название приложения
-          a.navbar-brand href="#" = @global_settings.site_name
+          a.navbar-brand href="/" = @global_settings.site_name
 
         / основная навигация
         #navbar.navbar-collapse.collapse
         
           ul.nav.navbar-nav
-            li.active
-              a href="/" Главная страница
-            li
+            
+            / статический элемент меню
+            li class=("active" if request.path_info == "/news")
               a href="/news" Новости
-            li
+            
+            / динамические элементы, получаемые перебором страниц
+            - @pages.each do |page|
+              li class=("active" if request.path_info == "/" + page.to_dot.page_url)
+                a href="/#{page.to_dot.page_url}" = page.to_dot.page_title
+            
+            / также статический элемент меню
+            li class=("active" if request.path_info == "/contacts")
               a href="/contacts" Контакты
           
           / элементы прибитые к краю справа
