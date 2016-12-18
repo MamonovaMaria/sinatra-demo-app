@@ -49,17 +49,17 @@ get '/' do
         :locals => {:hello => "Привет, мир!"}   # задаем локальные переменные
 end
 
-# роут для отображения отдельных страниц
-get '/:page_url' do
-  @page = @pages.where(page_url: params[:page_url]).first.to_dot
-  slim  :page,
-        :layout => "layouts/app".to_sym
-end
-
 # роут для админки, закрытый на базовыю HTTP-авторизацию средствами Rack
 get '/admin' do
   # через этот метод закрываем роут на HTTP-авторизацию
   protected!
   slim  :dashboard,
         :layout => "layouts/admin".to_sym
+end
+
+# роут для отображения отдельных страниц
+get '/:page_url' do
+  @page = @pages.where(page_url: params[:page_url]).first.to_dot
+  slim  :page,
+        :layout => "layouts/app".to_sym
 end
