@@ -57,9 +57,17 @@ get '/admin' do
         :layout => "layouts/admin".to_sym
 end
 
+post '/admin/destroy' do
+  protected!
+
+  @pages.where(id: params[:destroy]).delete
+
+  redirect '/admin'
+end
+
 # роут для отображения отдельных страниц
 get '/:page_url' do
-  @page = @pages.where(page_url: params[:page_url]).first.to_dot
+  @page = @pages.where(page_url: params[:page_url]).first
   slim  :page,
         :layout => "layouts/app".to_sym
 end

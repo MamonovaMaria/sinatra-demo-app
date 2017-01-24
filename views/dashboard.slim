@@ -1,1 +1,22 @@
 h1 Админка
+
+row
+  table.table.table-striped
+    thead
+      tr
+        th id
+        th page_url
+        th page_title
+        th published
+        th actions
+    tbody
+      - @pages.each do |page|
+        tr
+          td =page.to_dot.id
+          td =page.to_dot.page_url
+          td =page.to_dot.page_title
+          td =page.to_dot.published
+          td
+            a.btn.btn-xs.btn-warning href="/admin/edit/#{page.to_dot.id}" Редактировать
+            form action="/admin/destroy" method="post"
+              button.btn.btn-xs.btn-danger name="destroy" value="#{page.to_dot.id}" Удалить
