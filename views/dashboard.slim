@@ -15,12 +15,12 @@ row
     tbody
       - @pages.each do |page|
         tr
-          td =page.to_dot.id
-          td =page.to_dot.page_url
-          td =page.to_dot.page_title
-          td =page.to_dot.published
-          td =page.to_dot.parent_id
+          td =page.id
+          td =page.page_url
+          td =page.page_title
+          td =page.published
+          td =page.parent_id
           td
-            a.left.btn.btn-xs.btn-warning href="/admin/edit/#{page.to_dot.id}" Редактировать
+            a.left.btn.btn-xs.btn-warning href="/admin/edit/#{page.id}" Редактировать
             form action="/admin/destroy" method="post"
-              button.left.btn.btn-xs.btn-danger name="destroy" value="#{page.to_dot.id}" Удалить
+              button.left.btn.btn-xs.btn-danger name="destroy" value="#{page.id}" Удалить

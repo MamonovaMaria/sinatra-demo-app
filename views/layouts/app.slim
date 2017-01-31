@@ -14,6 +14,9 @@ html lang="ru"
     / указываем scale-фактор для отображения вьюпорта
     meta name="viewport" content="width=device-width, initial-scale=1"
     
+    / фавиконка
+    link rel="shortcut icon" href="/favicon.png" type="image/png"
+    
     / задаем тайтл страницы
     title = @global_settings.site_title
     
@@ -59,8 +62,8 @@ html lang="ru"
             
             / динамические элементы, получаемые перебором страниц
             - @published_pages.each do |page|
-              li class=("active" if request.path_info == "/" + page.to_dot.page_url)
-                a href="/#{page.to_dot.page_url}" = page.to_dot.page_title
+              li class=("active" if request.path_info == "/" + page.page_url)
+                a href="/#{page.page_url}" = page.page_title
             
             / также статический элемент меню
             li class=("active" if request.path_info == "/contacts")

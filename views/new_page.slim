@@ -26,7 +26,7 @@ h1 Создание страницы
         option value=""
           | -- Укажите родительскую страницу --
         - @pages.each do |page|
-          option value="#{page.to_dot.id}" =page.to_dot.page_title
+          option value="#{page.id}" =page.page_title
 
     .form-group
       .checkbox

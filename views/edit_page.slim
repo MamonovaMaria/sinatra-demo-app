@@ -1,24 +1,24 @@
-h1 Редактирование страницы ID:#{@page.to_dot.id}
+h1 Редактирование страницы ID:#{@page.id}
 
 .container
 
-  form.form-horizontal action="/admin/edit/#{@page.to_dot.id}" enctype="multipart/form-data" method="post"
+  form.form-horizontal action="/admin/edit/#{@page.id}" enctype="multipart/form-data" method="post"
   
     .form-group
       label.control-label for="page_url" URL страницы *
-      input.form-control placeholder=("page_url") type="text" id='page_url' name='page_url' required="required" value="#{@page.to_dot.page_url}"
+      input.form-control placeholder=("page_url") type="text" id='page_url' name='page_url' required="required" value="#{@page.page_url}"
     .form-group
       label.control-label for="page_title" Заголовок страницы *
-      input.form-control placeholder=("page_title") type="text" id='page_title' name='page_title' required="required" value="#{@page.to_dot.page_title}"
+      input.form-control placeholder=("page_title") type="text" id='page_title' name='page_title' required="required" value="#{@page.page_title}"
     .form-group
       label.control-label for="page_description" Описание страницы
-      input.form-control placeholder=("page_description") type="text" id='page_description' name='page_description' value="#{@page.to_dot.page_description}"
+      input.form-control placeholder=("page_description") type="text" id='page_description' name='page_description' value="#{@page.page_description}"
     .form-group
       label.control-label for="page_keywords" Ключевые слова
-      input.form-control placeholder=("page_keywords") type="text" id='page_keywords' name='page_keywords' value="#{@page.to_dot.page_keywords}"
+      input.form-control placeholder=("page_keywords") type="text" id='page_keywords' name='page_keywords' value="#{@page.page_keywords}"
     .form-group
       label.control-label for="page_content" Содержимое страницы
-      textarea.form-control rows="5" placeholder=("page_content") id="page_content" name="page_content" ==@page.to_dot.page_content
+      textarea.form-control rows="5" placeholder=("page_content") id="page_content" name="page_content" ==@page.page_content
 
     .form-group
       label.control-label for="parent_id" Родительская страница
@@ -26,7 +26,7 @@ h1 Редактирование страницы ID:#{@page.to_dot.id}
         option value=""
           | -- Укажите родительскую страницу --
         - @pages.each do |page|
-          option value="#{page.to_dot.id}" selected=("selected" if @page.to_dot.parent_id == page.to_dot.id) =page.to_dot.page_title
+          option value="#{page.id}" selected=("selected" if @page.parent_id == page.id) =page.page_title
 
     .form-group
       .checkbox

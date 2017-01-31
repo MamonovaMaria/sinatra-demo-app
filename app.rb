@@ -10,8 +10,11 @@ require 'pony'
 require 'letter_opener'
 # используем все необходимые гемы, подробное описание есть в Gemfile
 
+# использует dot-синтаксис по-умолчанию для всех хэшей, чтобы не писать to_dot везде
+Hash.use_dot_syntax = true
+
 # задаем БД
-DB = Sequel.connect("sqlite://#{YAML.load_file("config/database.yml").to_dot.db_file_path}")
+DB = Sequel.connect("sqlite://#{YAML.load_file("config/database.yml").db_file_path}")
 
 # в блоке helpers задаются методы-помощники Синатры, которые могут быть использованы
 # везде, в том числе за пределами роутов, например во вьюхах
@@ -29,7 +32,7 @@ helpers do
   # метод, присваивающий авторизацию через Rack с заданными значениями логин/пароль
   # методы, оканчивающиеся на вопросительный знак в имени обычно возвращают только значения true/false
   def authorized?
-    @secrets = YAML.load_file("config/secrets.yml").to_dot
+    @secrets = YAML.load_file("config/secrets.yml")
     @auth ||= Rack::Auth::Basic::Request.new(request.env)
     @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == %W(#{@secrets.auth.login} #{@secrets.auth.pass})
   end
@@ -40,7 +43,7 @@ end
 before do
   # выводим параметры запроса для каждого запроса в целях дебага
   p params
-  @global_settings = DB[:settings].first.to_dot
+  @global_settings = DB[:settings].first
   @pages = DB[:pages]
   @published_pages = @pages.where(published: true).all
 end
