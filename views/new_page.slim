@@ -1,0 +1,13 @@
+h1 Создание страницы
+
+.container
+
+  form.form-horizontal action="/admin/new" enctype="multipart/form-data" method="post"
+    
+    input.form-control placeholder=("page_url") type="text" name='page_url' required="required"
+    input.form-control placeholder=("page_title") type="text" name='page_title' required="required"
+    input.form-control placeholder=("page_description") type="text" name='page_description'
+    input.form-control placeholder=("page_keywords") type="text" name='page_keywords'
+    textarea.form-control placeholder=("page_content") name="page_content"
+    
+    input.button.btn.btn-primary type="submit" value=("СОХРАНИТЬ")

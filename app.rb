@@ -65,6 +65,50 @@ post '/admin/destroy' do
   redirect '/admin'
 end
 
+get '/admin/new' do
+  protected!
+
+  slim  :new_page,
+        :layout => "layouts/admin".to_sym
+end
+
+post '/admin/new' do
+  protected!
+
+  @pages.insert( {
+    :page_url => params[:page_url] ,
+    :page_title => params[:page_title] ,
+    :page_description => params[:page_description] ,
+    :page_keywords => params[:page_keywords] ,
+    :page_content => params[:page_content]
+  } )
+
+  redirect '/admin'
+end
+
+get '/admin/edit/:id' do
+  protected!
+
+  @page = @pages.where(id: params[:id]).first
+
+  slim  :edit_page,
+        :layout => "layouts/admin".to_sym
+end
+
+post '/admin/edit/:id' do
+  protected!
+
+  @pages.where(id: params[:id]).update( {
+    :page_url => params[:page_url] ,
+    :page_title => params[:page_title] ,
+    :page_description => params[:page_description] ,
+    :page_keywords => params[:page_keywords] ,
+    :page_content => params[:page_content]
+  } )
+
+  redirect '/admin'
+end
+
 # роут для отображения отдельных страниц
 get '/:page_url' do
   @page = @pages.where(page_url: params[:page_url]).first

@@ -1,0 +1,13 @@
+h1 Редактирование страницы ID:#{@page.to_dot.id}
+
+.container
+
+  form.form-horizontal action="/admin/edit/#{@page.to_dot.id}" enctype="multipart/form-data" method="post"
+    
+    input.form-control placeholder=("page_url") type="text" name='page_url' required="required" value="#{@page.to_dot.page_url}"
+    input.form-control placeholder=("page_title") type="text" name='page_title' required="required" value="#{@page.to_dot.page_title}"
+    input.form-control placeholder=("page_description") type="text" name='page_description' value="#{@page.to_dot.page_description}"
+    input.form-control placeholder=("page_keywords") type="text" name='page_keywords' value="#{@page.to_dot.page_keywords}"
+    textarea.form-control placeholder=("page_content") name="page_content" ==@page.to_dot.page_content
+    
+    input.button.btn.btn-primary type="submit" value=("СОХРАНИТЬ")
