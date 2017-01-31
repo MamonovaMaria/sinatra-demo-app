@@ -1,6 +1,6 @@
 h1 Админка
 
-a.btn.btn-primary href="/admin/new" Создать страницу
+a.right.btn.btn-primary href="/admin/new" Создать страницу
 
 row
   table.table.table-striped
@@ -19,6 +19,6 @@ row
           td =page.to_dot.page_title
           td =page.to_dot.published
           td
-            a.btn.btn-xs.btn-warning href="/admin/edit/#{page.to_dot.id}" Редактировать
+            a.left.btn.btn-xs.btn-warning href="/admin/edit/#{page.to_dot.id}" Редактировать
             form action="/admin/destroy" method="post"
-              button.btn.btn-xs.btn-danger name="destroy" value="#{page.to_dot.id}" Удалить
+              button.left.btn.btn-xs.btn-danger name="destroy" value="#{page.to_dot.id}" Удалить

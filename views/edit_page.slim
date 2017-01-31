@@ -3,13 +3,27 @@ h1 Редактирование страницы ID:#{@page.to_dot.id}
 .container
 
   form.form-horizontal action="/admin/edit/#{@page.to_dot.id}" enctype="multipart/form-data" method="post"
-    
-    input type="checkbox" name="published" value="1" Опубликовано?
-    
-    input.form-control placeholder=("page_url") type="text" name='page_url' required="required" value="#{@page.to_dot.page_url}"
-    input.form-control placeholder=("page_title") type="text" name='page_title' required="required" value="#{@page.to_dot.page_title}"
-    input.form-control placeholder=("page_description") type="text" name='page_description' value="#{@page.to_dot.page_description}"
-    input.form-control placeholder=("page_keywords") type="text" name='page_keywords' value="#{@page.to_dot.page_keywords}"
-    textarea.form-control placeholder=("page_content") name="page_content" ==@page.to_dot.page_content
-    
-    input.button.btn.btn-primary type="submit" value=("СОХРАНИТЬ")
+  
+    .form-group
+      label.control-label for="page_url" URL страницы *
+      input.form-control placeholder=("page_url") type="text" id='page_url' name='page_url' required="required" value="#{@page.to_dot.page_url}"
+    .form-group
+      label.control-label for="page_title" Заголовок страницы *
+      input.form-control placeholder=("page_title") type="text" id='page_title' name='page_title' required="required" value="#{@page.to_dot.page_title}"
+    .form-group
+      label.control-label for="page_description" Описание страницы
+      input.form-control placeholder=("page_description") type="text" id='page_description' name='page_description' value="#{@page.to_dot.page_description}"
+    .form-group
+      label.control-label for="page_keywords" Ключевые слова
+      input.form-control placeholder=("page_keywords") type="text" id='page_keywords' name='page_keywords' value="#{@page.to_dot.page_keywords}"
+    .form-group
+      label.control-label for="page_content" Содержимое страницы
+      textarea.form-control rows="5" placeholder=("page_content") id="page_content" name="page_content" ==@page.to_dot.page_content
+
+    .form-group
+      .checkbox
+        label
+          input type="checkbox" name="published" value="1" Опубликовано?
+
+    .form-group
+      input.button.btn.btn-primary type="submit" value=("СОХРАНИТЬ")
