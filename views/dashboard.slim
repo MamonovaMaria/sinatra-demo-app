@@ -10,6 +10,7 @@ row
         th page_url
         th page_title
         th published
+        th parent_id
         th actions
     tbody
       - @pages.each do |page|
@@ -18,6 +19,7 @@ row
           td =page.to_dot.page_url
           td =page.to_dot.page_title
           td =page.to_dot.published
+          td =page.to_dot.parent_id
           td
             a.left.btn.btn-xs.btn-warning href="/admin/edit/#{page.to_dot.id}" Редактировать
             form action="/admin/destroy" method="post"

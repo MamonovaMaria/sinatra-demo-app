@@ -38,6 +38,8 @@ end
 # в блоке before используется код, который будет выполнен ДО того как будет обработан
 # любой роут соответственно глобальные переменные лучше всего задавать именно тут
 before do
+  # выводим параметры запроса для каждого запроса в целях дебага
+  p params
   @global_settings = DB[:settings].first.to_dot
   @pages = DB[:pages]
   @published_pages = @pages.where(published: true).all
@@ -82,7 +84,8 @@ post '/admin/new' do
     :page_description => params[:page_description] ,
     :page_keywords => params[:page_keywords] ,
     :page_content => params[:page_content] ,
-    :published => params[:published] || false
+    :published => params[:published] || false ,
+    :parent_id => if params[:parent_id].to_s.length > 0 then params[:parent_id].to_i else nil end
   } )
 
   redirect '/admin'
@@ -106,7 +109,8 @@ post '/admin/edit/:id' do
     :page_description => params[:page_description] ,
     :page_keywords => params[:page_keywords] ,
     :page_content => params[:page_content] ,
-    :published => params[:published] || false
+    :published => params[:published] || false ,
+    :parent_id => if params[:parent_id].to_s.length > 0 then params[:parent_id].to_i else nil end
   } )
 
   redirect '/admin'

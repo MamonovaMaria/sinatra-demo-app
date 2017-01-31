@@ -21,6 +21,14 @@ h1 Создание страницы
       textarea.form-control rows="5" placeholder=("page_content") id="page_content" name="page_content"
 
     .form-group
+      label.control-label for="parent_id" Родительская страница
+      select.form-control id="parent_id" name="parent_id"
+        option value=""
+          | -- Укажите родительскую страницу --
+        - @pages.each do |page|
+          option value="#{page.to_dot.id}" =page.to_dot.page_title
+
+    .form-group
       .checkbox
         label
           input type="checkbox" name="published" value="1" Опубликовано?
