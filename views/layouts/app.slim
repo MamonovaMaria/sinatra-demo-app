@@ -58,7 +58,7 @@ html lang="ru"
               a href="/news" Новости
             
             / динамические элементы, получаемые перебором страниц
-            - @pages.each do |page|
+            - @published_pages.each do |page|
               li class=("active" if request.path_info == "/" + page.to_dot.page_url)
                 a href="/#{page.to_dot.page_url}" = page.to_dot.page_title
             

@@ -40,6 +40,7 @@ end
 before do
   @global_settings = DB[:settings].first.to_dot
   @pages = DB[:pages]
+  @published_pages = @pages.where(published: true).all
 end
 
 # собственно, корневой роут, который отдается при запуске приложения
@@ -80,7 +81,8 @@ post '/admin/new' do
     :page_title => params[:page_title] ,
     :page_description => params[:page_description] ,
     :page_keywords => params[:page_keywords] ,
-    :page_content => params[:page_content]
+    :page_content => params[:page_content] ,
+    :published => params[:published] || false
   } )
 
   redirect '/admin'
@@ -103,7 +105,8 @@ post '/admin/edit/:id' do
     :page_title => params[:page_title] ,
     :page_description => params[:page_description] ,
     :page_keywords => params[:page_keywords] ,
-    :page_content => params[:page_content]
+    :page_content => params[:page_content] ,
+    :published => params[:published] || false
   } )
 
   redirect '/admin'
