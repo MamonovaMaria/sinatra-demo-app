@@ -2,89 +2,93 @@
 doctype html
 / обязательно указываем язык документа
 html lang="ru"
-  
+
   head
-    
+
     / кроме того, обязательно указываем тип контента
     meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
-    
+
     / это для глупенького IE
     meta http-equiv="X-UA-Compatible" content="IE=edge"
-    
+
     / указываем scale-фактор для отображения вьюпорта
     meta name="viewport" content="width=device-width, initial-scale=1"
-    
+
     / фавиконка
     link rel="shortcut icon" href="/favicon.png" type="image/png"
-    
+
     / задаем тайтл страницы
     title = @global_settings.site_title
-    
+
     / задаем мета-тег description
     meta name="description" content="#{@global_settings.site_description}"
-    
+
     / задаем мета-тег keywords
     meta name="keywords" content="#{@global_settings.site_keywords}"
-    
+
     / указываем основной файл стилей для Bootstrap 3.3.7
     link href="/css/bootstrap.min.css" rel="stylesheet"
-    
+
     / наш пользоваетльский CSS
     link href="/css/app.css" rel="stylesheet"
 
   body
-    
+
     / навигация
     nav.navbar.navbar-default.navbar-fixed-top
-      
+
       .container
-      
+
         .navbar-header
-          
+
           / на маленьком разрешении экрана показывается кнопка разворачивания меню
           button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
             span.sr-only Развернуть меню
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          
+
           / лого или название приложения
           a.navbar-brand href="/" = @global_settings.site_name
 
         / основная навигация
         #navbar.navbar-collapse.collapse
-        
+
           ul.nav.navbar-nav
-            
+
             / статический элемент меню
             li class=("active" if request.path_info == "/news")
               a href="/news" Новости
-            
+
             / динамические элементы, получаемые перебором страниц
             - @published_pages.each do |page|
               li class=("active" if request.path_info == "/" + page.page_url)
                 a href="/#{page.page_url}" = page.page_title
-            
+
             / также статический элемент меню
             li class=("active" if request.path_info == "/contacts")
               a href="/contacts" Контакты
-          
+
           / элементы прибитые к краю справа
           a.btn.btn-default.navbar-btn.navbar-right href="/admin" Войти в админку
 
     .container
-    
+
       / через магическое слово yield сюда будет прокинута вьюха,
       / при этом "==" означает что все HTML-содержимое будет выведено как есть
       ==yield
-    
+
     / скрипты мы традиционно подключаем внизу
-    
+
     / минифицированный jQuery 3.1.1
     script src="/js/jquery.min.js"
-    
+
     / минифицированный Bootstrap 3.3.7
     script src="/js/bootstrap.min.js"
-    
+
+    / ссылка на источник красивого ckeditor
+    script src="https://cdn.ckeditor.com/4.6.1/standard-all/ckeditor.js"
+        CKEDITOR.replace( 'content')
+
     / наш пользовательский JS
     script src="/js/app.js"
