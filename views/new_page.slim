@@ -3,7 +3,7 @@ h1 Создание страницы
 .container
 
   form.form-horizontal action="/admin/new" enctype="multipart/form-data" method="post"
-  
+
     .form-group
       label.control-label for="page_url" URL страницы *
       input.form-control placeholder=("page_url") type="text" id='page_url' name='page_url' required="required"
@@ -35,3 +35,7 @@ h1 Создание страницы
 
     .form-group
       input.button.btn.btn-primary type="submit" value=("СОХРАНИТЬ")
+
+
+javascript:
+    CKEDITOR.replace("page_content")

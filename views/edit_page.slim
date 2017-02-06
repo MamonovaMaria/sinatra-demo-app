@@ -3,7 +3,7 @@ h1 Редактирование страницы ID:#{@page.id}
 .container
 
   form.form-horizontal action="/admin/edit/#{@page.id}" enctype="multipart/form-data" method="post"
-  
+
     .form-group
       label.control-label for="page_url" URL страницы *
       input.form-control placeholder=("page_url") type="text" id='page_url' name='page_url' required="required" value="#{@page.page_url}"
@@ -35,3 +35,6 @@ h1 Редактирование страницы ID:#{@page.id}
 
     .form-group
       input.button.btn.btn-primary type="submit" value=("СОХРАНИТЬ")
+
+javascript:
+    CKEDITOR.replace("page_content")
